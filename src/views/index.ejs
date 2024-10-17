@@ -5,15 +5,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Scraping</title>
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
     <h1>Generar tabla de información del Tipo de Cambio</h1>
     <div class="container">
-        <form action="/pdf" method="POST">
-            <input type="date" name="dateStart" value="">
-            <input type="date" name="dateEnd" value="">
+        <form action="/pdf" method="POST" onSubmit="return validateDates()" target="_blank">
+            <div>
+                <label for="dateStart">Fecha Inicial</label>
+                <input type="date" id="dateStart" name="dateStart" value="">
+            </div>
+            <div>
+                <label for="dateEnd">Fecha Final</label>
+                <input type="date" id="dateEnd" name="dateEnd" value="">
+            </div>
             <button type="submit">Generar PDF</button>
         </form>
     </div>
@@ -25,5 +31,39 @@
             La información se extrae directamente de la página oficial del Banco de México, disponible en: <a href="<%= url %>" target="_blank">https://www.banxico.org.mx</a>, lo que garantiza la precisión y validez de los datos proporcionados.
         </p>
     </div>
+
+    <script>
+        function validateDates() {
+            let dateStart = document.getElementById('dateStart').value;
+            let dateEnd = document.getElementById('dateEnd').value;
+
+            // Validar valores vacios
+            if (!dateStart || !dateEnd) {
+                alert("Las fechas no pueden estar vacías.");
+                return false;
+            }
+
+            let start   = new Date(dateStart);
+            let end     = new Date(dateEnd);
+
+            // Validar que las fechas sean válidas
+            if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+                alert("Por favor ingresa fechas válidas.");
+                return false;
+            }
+
+            // Verificar que la fecha inicial no sea mayor que la fecha final
+            if (start > end) {
+                alert("La fecha inicial no puede ser mayor que la fecha final.");
+                return false;
+            }
+
+            return true;
+        }
+
+        let date = new Date().toISOString().split('T')[0];
+        document.getElementById('dateStart').value = date;
+        document.getElementById('dateEnd').value = date;
+    </script>
 </body>
 </html>

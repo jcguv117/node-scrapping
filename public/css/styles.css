@@ -82,6 +82,13 @@ input:active {
     transform: scale(0.95);
 }
 
+label {
+    color: #2e8555;
+    font-weight: 600;
+    padding-bottom: 4px;
+    line-height: 2;
+}
+
 p {
     font-size: 11px;
     padding: 0 20px;
