@@ -9,11 +9,21 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <h1><%= title %></h1>
-    <form action="/pdf" method="POST">
-        <input type="date" name="dateStart" value="">
-        <input type="date" name="dateEnd" value="">
-        <button type="submit" class="button">Generar PDF</button>
-    </form>
+    <h1>Generar tabla de información del Tipo de Cambio</h1>
+    <div class="container">
+        <form action="/pdf" method="POST">
+            <input type="date" name="dateStart" value="">
+            <input type="date" name="dateEnd" value="">
+            <button type="submit">Generar PDF</button>
+        </form>
+    </div>
+    <div>
+        <p>
+            La plataforma ofrece una herramienta sencilla para la obtención de información actualizada sobre los tipos de cambio publicados por el <b>Banco de México</b>. A través del formulario, puedes generar automáticamente un archivo PDF con los datos más recientes, extraídos directamente de la página fuente. 
+        </p>
+        <p>
+            La información se extrae directamente de la página oficial del Banco de México, disponible en: <a href="<%= url %>" target="_blank">https://www.banxico.org.mx</a>, lo que garantiza la precisión y validez de los datos proporcionados.
+        </p>
+    </div>
 </body>
 </html>

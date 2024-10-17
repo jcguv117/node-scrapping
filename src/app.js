@@ -2,7 +2,7 @@ const express = require('express');
 
 const http = require('http');
 const path = require('path');
-const { PORT } = require('./config/config');
+const { PORT, URL_SCRAPING } = require('./config/config');
 
 // Configurar la aplicación Express
 const app = express();
@@ -22,7 +22,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Rutas
 app.get('/', async (req, res) => {
-  res.render('index', { title: 'Home' });
+  res.render('index', { url: URL_SCRAPING });
 });
 
 const scraping = require('./routes/scraping.routes')
