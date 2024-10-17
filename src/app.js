@@ -22,6 +22,9 @@ app.get('/', async (req, res) => {
   res.render('index', { title: 'Home' });
 });
 
+const scraping = require('./routes/scraping.routes')
+app.use('/', scraping)
+
 // Crear servidor HTTP 
 const server = http.createServer(app)
 
