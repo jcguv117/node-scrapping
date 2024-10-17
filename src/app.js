@@ -13,6 +13,9 @@ app.use(express.static('public'));
 // Parsear el cuerpo de la solicitud como JSON
 app.use(express.json());
 
+// Procesar datos de formulario
+app.use(express.urlencoded({ extended: true }));
+
 // Establecer el motor de plantillas EJS
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));

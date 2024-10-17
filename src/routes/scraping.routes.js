@@ -3,15 +3,17 @@ const router = express.Router();
 
 const { URL_SCRAPING } = require("../config/config");
 const ScrappingService = require('../services/scraping.service');
+const utilitiesService = require("../services/utilities.service");
 
-router.get('/pdf', async (req, res) => {
+router.post('/pdf', async (req, res) => {
     const url = URL_SCRAPING;
+    const {dateStart, dateEnd} = req.body;
     try {
         const postData = {
-            fechaInicial: '10/10/2024',
-            fechaFinal: '16/10/2024',
-            idioma: 'sp',
+            fechaInicial: utilitiesService.getDateConvert('dd/MM/yyyy', new Date(dateStart)),
+            fechaFinal  : utilitiesService.getDateConvert('dd/MM/yyyy', new Date(dateEnd)),
         };
+
         const pdfBuffer = await ScrappingService.createPDF(url, postData);
 
         // Verificamos si el buffer del PDF es válido
