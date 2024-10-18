@@ -10,8 +10,8 @@ router.post('/pdf', async (req, res) => {
     const {dateStart, dateEnd} = req.body;
     try {
         const postData = {
-            fechaInicial: utilitiesService.getDateConvert('dd/MM/yyyy', new Date(dateStart)),
-            fechaFinal  : utilitiesService.getDateConvert('dd/MM/yyyy', new Date(dateEnd)),
+            fechaInicial: utilitiesService.getDateConvert('dd/MM/yyyy', new Date([dateStart, "00:00"])),
+            fechaFinal  : utilitiesService.getDateConvert('dd/MM/yyyy', new Date([dateEnd, , "00:00"])),
         };
 
         const pdfBuffer = await ScrappingService.createPDF(url, postData);

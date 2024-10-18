@@ -61,9 +61,32 @@
             return true;
         }
 
-        let date = new Date().toISOString().split('T')[0];
-        document.getElementById('dateStart').value = date;
-        document.getElementById('dateEnd').value = date;
+        function setDefaultDate(element, date) {
+            element.value = date;
+        }
+
+        function addDatePicker(element) {
+            element.addEventListener('click', function() {
+                this.showPicker();
+            });
+        } 
+
+        function init() {
+            const currentDate = new Date().toISOString().split('T')[0];
+
+            let elements = [
+                document.getElementById('dateStart'),
+                document.getElementById('dateEnd')
+            ]
+
+            elements.forEach(element => {
+                setDefaultDate(element, currentDate);
+                addDatePicker(element);
+            });
+        }
+
+        init();
+
     </script>
 </body>
 </html>
