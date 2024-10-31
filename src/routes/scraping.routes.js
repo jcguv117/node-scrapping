@@ -6,7 +6,7 @@ const ScrappingService = require('../services/scraping.service');
 const utilitiesService = require("../services/utilities.service");
 
 router.post('/pdf', async (req, res) => {
-    const url = URL_SCRAPING;
+    const url = URL_SCRAPING+'/tipCamIHAction.do';
     const {dateStart, dateEnd} = req.body;
     try {
         const postData = {

@@ -83,7 +83,7 @@ input:active {
     transform: scale(0.95);
 }
 
-label {
+label, span {
     color: #2e8555;
     font-weight: 600;
     padding-bottom: 4px;

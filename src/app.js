@@ -4,6 +4,9 @@ const http = require('http');
 const path = require('path');
 const { PORT, URL_SCRAPING } = require('./config/config');
 
+const scraping = require('./routes/scraping.routes');
+const scrapingService = require('./services/scraping.service');
+
 // Configurar la aplicación Express
 const app = express();
 
@@ -22,10 +25,10 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Rutas
 app.get('/', async (req, res) => {
-  res.render('index', { url: URL_SCRAPING });
+  const value = await scrapingService.scrapeInformation(URL_SCRAPING+'/main.do', '#tdSF43718');
+  res.render('index', { url: URL_SCRAPING+'/tipCamIHAction.do', tcValue: value?.trim() || null });
 });
 
-const scraping = require('./routes/scraping.routes')
 app.use('/', scraping)
 
 // Crear servidor HTTP 
